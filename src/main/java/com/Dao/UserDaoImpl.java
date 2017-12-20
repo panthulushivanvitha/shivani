@@ -1,4 +1,4 @@
-package com.DaoImpl;
+package com.Dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -7,7 +7,6 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.Dao.UserDao;
 import com.model.User;
 
 @Repository

@@ -15,25 +15,19 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.Dao.UserDao;
-import com.DaoImpl.UserDaoImpl;
+import com.Dao.UserDaoImpl;
 
 @Configuration
-@ComponentScan("com.spring.model")
+@ComponentScan("com.model")
 @EnableTransactionManagement
-//@EnableWebMvc
+
 
 public class hiberConfig{
-	
-	
-
-		
-		
-	     
-		 @Bean(name = "dataSource")
+	  @Bean(name = "dataSource")
 			public DataSource getDataSource() {
 				DriverManagerDataSource dataSource = new DriverManagerDataSource();
 				dataSource.setDriverClassName("org.h2.Driver");
-				dataSource.setUrl("jdbc:h2:tcp://localhost/~/ecommerce");
+				dataSource.setUrl("jdbc:h2:tcp://localhost/~/newprojectbackend");
 				dataSource.setUsername("sa");
 				dataSource.setPassword("");
 				System.out.println("Datasource");
@@ -57,7 +51,7 @@ public class hiberConfig{
 			public SessionFactory getSessionFactory(DataSource dataSource) {
 				LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 				sessionBuilder.addProperties(getHibernateProperties());
-				sessionBuilder.scanPackages("com.spring");
+				sessionBuilder.scanPackages("com");
 				System.out.println("Session");
 				
 				return sessionBuilder.buildSessionFactory();
@@ -73,7 +67,7 @@ public class hiberConfig{
 			}
 			
 			@Autowired
-			@Bean(name = "userDAO")
+			@Bean(name = "UserDao")
 			public UserDao getUserDao(SessionFactory sessionFactory) {
 			    return new UserDaoImpl(sessionFactory);
 			}
